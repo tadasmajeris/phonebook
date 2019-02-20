@@ -88,15 +88,21 @@ table td {
 table thead {
   border-bottom: 1px solid #efefef;
 }
+table thead td {
+  cursor: pointer;
+}
 .selected-option {
   font-weight: bold;
 }
-.selected-option:after {
+.selected-option:after, table thead td:hover:after {
   content: '↓';
   display: inline-block;
   position: absolute;
   padding-left: 3px;
   margin-top: -2px;
   transform: scale(1.2, 0.88);
+}
+table thead td:hover:after {
+  color: #999;
 }
 </style>
