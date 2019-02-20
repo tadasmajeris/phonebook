@@ -12,7 +12,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for='(contact, i) in sortedContacts'>
+        <tr v-for='(contact, i) in filteredContacts'>
           <td v-for='option in contactOptions' v-text="contact[option.id]"></td>
         </tr>
       </tbody>
@@ -61,6 +61,18 @@ export default {
   },
 
   computed: {
+    filteredContacts() {
+      let searchString = this.searchString.toLowerCase();
+
+      let filteredContacts = this.sortedContacts.filter(contact => {
+        return contact.name.toLowerCase().includes(searchString) ||
+               contact.phone_number.toLowerCase().includes(searchString) ||
+               contact.address.toLowerCase().includes(searchString);
+      });
+
+      return filteredContacts;
+    },
+
     sortedContacts() {
       let sortKey = this.selectedOption.id;
       if (this.sortingAsc) {
