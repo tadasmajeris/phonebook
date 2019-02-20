@@ -1,6 +1,15 @@
 <template>
   <div class="hello">
     <h1>{{ msg }}</h1>
+
+    <table>
+      <tr v-for='(contact, i) in contacts'>
+        <td>{{i+1}}</td>
+        <td v-text="contact.name"></td>
+        <td v-text="contact.phone_number"></td>
+        <td v-text="contact.address"></td>
+      </tr>
+    </table>
   </div>
 </template>
 
@@ -9,6 +18,24 @@ export default {
   name: 'Phonebook',
   props: {
     msg: String
+  },
+
+  data() {
+    return {
+      contacts: []
+    }
+  },
+
+  created() {
+    const axios = require('axios');
+
+    axios.get('http://www.mocky.io/v2/581335f71000004204abaf83')
+    .then(response => {
+      this.contacts = response.data.contacts;
+    })
+    .catch(function (error) {
+      console.log(error);
+    })
   }
 }
 </script>
@@ -28,5 +55,12 @@ li {
 }
 a {
   color: #42b983;
+}
+table {
+  margin: auto;
+}
+table td {
+  text-align: left;
+  padding-right: 20px;
 }
 </style>
