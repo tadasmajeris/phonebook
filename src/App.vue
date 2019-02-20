@@ -1,17 +1,17 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <img alt="phonebook logo" src="./assets/logo.jpg">
+    <Phonebook msg="Phonebook v1"/>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Phonebook from './components/Phonebook.vue'
 
 export default {
   name: 'app',
   components: {
-    HelloWorld
+    Phonebook
   }
 }
 </script>
@@ -24,5 +24,11 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+
+#app img {
+  width: 100px;
+  margin-top: -50px;
+  margin-bottom: -20px;
 }
 </style>
