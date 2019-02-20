@@ -1,22 +1,21 @@
 <template>
   <div class="hello">
+
     <h1>{{ msg }}</h1>
 
     <table>
       <thead>
         <tr>
-          <td v-for="option in contactOptions" v-text="option"></td>
+          <td v-for="option in contactOptions" v-text="option.name"></td>
         </tr>
       </thead>
       <tbody>
         <tr v-for='(contact, i) in contacts'>
-          <td>{{i+1}}</td>
-          <td v-text="contact.name"></td>
-          <td v-text="contact.phone_number"></td>
-          <td v-text="contact.address"></td>
+          <td v-for='option in contactOptions' v-text="option.name == 'id' ? (i+1) : contact[option.id]"></td>
         </tr>
       </tbody>
     </table>
+
   </div>
 </template>
 
@@ -31,7 +30,10 @@ export default {
     return {
       contacts: [],
       contactOptions: [
-        'id', 'Name', 'Phone', 'Address'
+        { id: 'id', name: 'id' },
+        { id: 'name', name: 'Name' },
+        { id: 'phone_number', name: 'Phone' },
+        { id: 'address', name: 'Address' },
       ]
     }
   },
@@ -50,7 +52,6 @@ export default {
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 h3 {
   margin: 40px 0 0;
