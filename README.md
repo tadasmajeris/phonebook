@@ -1,29 +1,20 @@
 # phonebook
 
-## Project setup
+Vue Phonebook demo, as a hackajob challenge.
+
+## 1. To run the project, go to the terminal and clone
+```
+git clone "https://github.com/tadasmajeris/phonebook.git"
+cd phonebook
+```
+
+## 2. Install project & dependencies
 ```
 npm install
 ```
 
-### Compiles and hot-reloads for development
+### 3. Run server and go to http://localhost:8080
 ```
 npm run serve
+visit 'http://localhost:8080' in your browser
 ```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Run your tests
-```
-npm run test
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
