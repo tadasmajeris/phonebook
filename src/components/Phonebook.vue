@@ -3,6 +3,8 @@
 
     <h1>{{ msg }}</h1>
 
+    <input id='search' type='text' v-model='searchString' placeholder='search'/>
+
     <table>
       <thead>
         <tr>
@@ -35,6 +37,7 @@ export default {
         { id: 'phone_number', name: 'Phone' },
         { id: 'address', name: 'Address' },
       ],
+      searchString: '',
       selectedOption: {},
       sortingAsc: true,
     }
@@ -86,19 +89,8 @@ export default {
 </script>
 
 <style scoped>
-h3 {
-  margin: 40px 0 0;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
+h1 {
+  margin-bottom: 10px;
 }
 table {
   margin: auto;
@@ -143,5 +135,10 @@ table thead td:hover:after {
         -ms-user-select: none; /* Internet Explorer/Edge */
             user-select: none; /* Non-prefixed version, currently
                                   supported by Chrome and Opera */
+}
+#search {
+  margin-bottom: 10px;
+  padding: 5px 10px;
+  width: 185px;
 }
 </style>
