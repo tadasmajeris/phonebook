@@ -10,8 +10,8 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for='(contact, i) in contacts'>
-          <td v-for='option in contactOptions' v-text="option.name == 'id' ? (i+1) : contact[option.id]"></td>
+        <tr v-for='(contact, i) in sortedContacts'>
+          <td v-for='option in contactOptions' v-text="contact[option.id]"></td>
         </tr>
       </tbody>
     </table>
@@ -47,10 +47,20 @@ export default {
     axios.get('http://www.mocky.io/v2/581335f71000004204abaf83')
     .then(response => {
       this.contacts = response.data.contacts;
+      for (let i=0; i<this.contacts.length; i++) {
+        this.contacts[i].id = String(i+1);
+      }
     })
     .catch(function (error) {
       console.log(error);
     })
+  },
+
+  computed: {
+    sortedContacts() {
+      let sortKey = this.selectedOption.id;
+      return this.contacts.sort((a, b) => a[sortKey].localeCompare(b[sortKey], "en-u-kn-true"));
+    }
   },
 
   methods: {
