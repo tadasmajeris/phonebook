@@ -6,7 +6,7 @@
     <table>
       <thead>
         <tr>
-          <td v-for="option in contactOptions" v-text="option.name"></td>
+          <td v-for="option in contactOptions" v-text="option.name" :class="isSelectedClass(option)"></td>
         </tr>
       </thead>
       <tbody>
@@ -34,11 +34,14 @@ export default {
         { id: 'name', name: 'Name' },
         { id: 'phone_number', name: 'Phone' },
         { id: 'address', name: 'Address' },
-      ]
+      ],
+      selectedOption: {}
     }
   },
 
   created() {
+    this.selectedOption = this.contactOptions[0];
+
     const axios = require('axios');
 
     axios.get('http://www.mocky.io/v2/581335f71000004204abaf83')
@@ -48,6 +51,12 @@ export default {
     .catch(function (error) {
       console.log(error);
     })
+  },
+
+  methods: {
+    isSelectedClass(option) {
+      return option == this.selectedOption ? 'selected-option' : '';
+    }
   }
 }
 </script>
@@ -74,9 +83,20 @@ table {
 table td {
   text-align: left;
   padding: 5px 0;
-  padding-right: 20px;
+  padding-right: 25px;
 }
 table thead {
   border-bottom: 1px solid #efefef;
+}
+.selected-option {
+  font-weight: bold;
+}
+.selected-option:after {
+  content: '↓';
+  display: inline-block;
+  position: absolute;
+  padding-left: 3px;
+  margin-top: -2px;
+  transform: scale(1.2, 0.88);
 }
 </style>
