@@ -13,7 +13,7 @@ cd phonebook
 npm install
 ```
 
-### 3. Run server and go to http://localhost:8080
+## 3. Run server and go to http://localhost:8080
 ```
 npm run serve
 ```
