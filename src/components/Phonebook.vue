@@ -6,7 +6,7 @@
     <table>
       <thead>
         <tr>
-          <td v-for="option in contactOptions" v-text="option.name" :class="isSelectedClass(option)" @click="selectedOption = option"></td>
+          <td v-for="option in contactOptions" v-text="option.name" :class="isSelectedClass(option)" @click="onOptionClick(option)" class='noselect'></td>
         </tr>
       </thead>
       <tbody>
@@ -35,7 +35,8 @@ export default {
         { id: 'phone_number', name: 'Phone' },
         { id: 'address', name: 'Address' },
       ],
-      selectedOption: {}
+      selectedOption: {},
+      sortingAsc: true,
     }
   },
 
@@ -59,13 +60,26 @@ export default {
   computed: {
     sortedContacts() {
       let sortKey = this.selectedOption.id;
-      return this.contacts.sort((a, b) => a[sortKey].localeCompare(b[sortKey], "en-u-kn-true"));
+      if (this.sortingAsc) {
+        return this.contacts.sort((a, b) => a[sortKey].localeCompare(b[sortKey], "en-u-kn-true"));
+      } else {
+        return this.contacts.sort((b, a) => a[sortKey].localeCompare(b[sortKey], "en-u-kn-true"));
+      }
     }
   },
 
   methods: {
     isSelectedClass(option) {
-      return option == this.selectedOption ? 'selected-option' : '';
+      if (option == this.selectedOption) {
+        return this.sortingAsc ? 'selected-option' : 'selected-option desc';
+      } else {
+        return '';
+      }
+    },
+
+    onOptionClick(option) {
+      this.sortingAsc = (this.selectedOption == option) ? !this.sortingAsc : true;
+      this.selectedOption = option;
     }
   }
 }
@@ -112,10 +126,22 @@ table thead td {
   margin-top: -2px;
   transform: scale(1.2, 0.88);
 }
+.selected-option.desc:after {
+  content: '↑';
+}
 table thead td:hover:after {
   color: #999;
 }
 .selected-option:hover:after {
   color: inherit;
+}
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
 }
 </style>
