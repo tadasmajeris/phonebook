@@ -6,7 +6,7 @@
     <table>
       <thead>
         <tr>
-          <td v-for="option in contactOptions" v-text="option.name" :class="isSelectedClass(option)"></td>
+          <td v-for="option in contactOptions" v-text="option.name" :class="isSelectedClass(option)" @click="selectedOption = option"></td>
         </tr>
       </thead>
       <tbody>
@@ -104,5 +104,8 @@ table thead td {
 }
 table thead td:hover:after {
   color: #999;
+}
+.selected-option:hover:after {
+  color: inherit;
 }
 </style>
