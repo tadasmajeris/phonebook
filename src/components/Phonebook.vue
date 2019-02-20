@@ -3,12 +3,19 @@
     <h1>{{ msg }}</h1>
 
     <table>
-      <tr v-for='(contact, i) in contacts'>
-        <td>{{i+1}}</td>
-        <td v-text="contact.name"></td>
-        <td v-text="contact.phone_number"></td>
-        <td v-text="contact.address"></td>
-      </tr>
+      <thead>
+        <tr>
+          <td v-for="option in contactOptions" v-text="option"></td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for='(contact, i) in contacts'>
+          <td>{{i+1}}</td>
+          <td v-text="contact.name"></td>
+          <td v-text="contact.phone_number"></td>
+          <td v-text="contact.address"></td>
+        </tr>
+      </tbody>
     </table>
   </div>
 </template>
@@ -22,7 +29,10 @@ export default {
 
   data() {
     return {
-      contacts: []
+      contacts: [],
+      contactOptions: [
+        'id', 'Name', 'Phone', 'Address'
+      ]
     }
   },
 
@@ -58,9 +68,14 @@ a {
 }
 table {
   margin: auto;
+  border-collapse: collapse;
 }
 table td {
   text-align: left;
+  padding: 5px 0;
   padding-right: 20px;
+}
+table thead {
+  border-bottom: 1px solid #efefef;
 }
 </style>
