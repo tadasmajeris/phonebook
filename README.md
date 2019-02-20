@@ -16,5 +16,5 @@ npm install
 ### 3. Run server and go to http://localhost:8080
 ```
 npm run serve
-visit 'http://localhost:8080' in your browser
 ```
+visit 'http://localhost:8080' in your browser to see the phonebook.
